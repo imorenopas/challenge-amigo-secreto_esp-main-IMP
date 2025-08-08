@@ -4,9 +4,17 @@
 let arrAmigos = [];
 
 
-// Funcion para agregar nombres de amigos al arreglo
+//-- Click al botón añadir
+//Funcion para agregar nombres de amigos al arreglo
 function agregarAmigo (){
     //console.log ('agregar amigo');
+
+    // HTML: Borramos el mensaje del resultado del sorteo anterior, si es que lo hubo
+    // El arreglo de nombres de amigos no se inicializa
+    var listaResultado = document.getElementById('resultado');
+    // Se inicializa la lista del html del nombre del amigo sorteado
+    eliminarElementosLista(listaResultado);
+    
     let nombre = document.getElementById('amigo').value;
     if (nombre != ""){
         //console.log (nombre);
@@ -30,10 +38,10 @@ function agregarAmigo (){
 
 // Muestra el arreglo de amigos en la lista HTML
 function muestraListaAmigos(){
-    // Obtener el elemento de la lista
+    //HTML: Obtener el elemento de la lista
    let lista = document.getElementById('listaAmigos'); 
 
-   // Limpiar la lista existente, para que no haya duplicados
+   // HTML: Limpiar la lista existente, para que no haya duplicados
    lista.innerHTML = "";
 
    for (var i = 0; i < arrAmigos.length; i++) {
@@ -67,26 +75,24 @@ function sortearAmigo(){
         var max = arrAmigos.length-1;
         var min = 0;
         var indiceSorteado = Math.floor(Math.random() * (max - min + 1)) + min;
-        //console.log(indiceSorteado);
+        //coSnsole.log(indiceSorteado);
         //console.log(arrAmigos[indiceSorteado]);
 
-        // Elimino la lista del html
+        // Elimino la lista del HTML
         var lista = document.getElementById('listaAmigos');
         eliminarElementosLista(lista);
-
         
         // Mostrar el nombre del amigo sorteado
         var listaResultado = document.getElementById('resultado');
-
-        // Elimino la lista del html
+        // Se inicializa la lista del html del nombre del amigo sorteado
         eliminarElementosLista(listaResultado);
-
+        // Se muestra el nombre del amigo sorteado
         agregarElementoLi(listaResultado, `El amigo secreto sorteado es: ${arrAmigos[indiceSorteado]}`);
     }
     return;
 }
 
-
+// HTML: Borra la presentacion de lista de amigos
 function eliminarElementosLista(lista) {
   while (lista.firstChild) {
     lista.removeChild(lista.firstChild);
